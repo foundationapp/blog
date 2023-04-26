@@ -63,7 +63,7 @@ class PostsEditor extends Component
         }
 
         if ($this->image) {
-            $this->post->image = $this->image->store('images');
+            $this->post->image = $this->image->store('images', 'public');
             $this->image = null;
         }
 
