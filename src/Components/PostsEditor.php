@@ -15,6 +15,7 @@ class PostsEditor extends Component
 
     public $post;
     public $image;
+    public $post_id;
 
     protected $rules = [
         'post.title' => 'required|min:6',
@@ -45,6 +46,16 @@ class PostsEditor extends Component
         }
     }
 
+    public function slugValidation($slug)
+    {
+        $slug = Str::slug($slug);
+        $count = Post::where('slug', $slug)->count();
+        if ($count > 0) {
+            $slug = $slug . '-' . time();
+        }
+        return $slug;
+    }
+
     public function savePost()
     {
         $validator = Validator::make($this->getDataForValidation($this->rules), $this->rules);
@@ -59,7 +70,7 @@ class PostsEditor extends Component
 
         $this->post->user_id = auth()->user()->id;
         if (!isset($this->post->id)) {
-            $this->post->slug = Str::slug($this->post->title);
+            $this->post->slug = $this->slugValidation($this->post->title);
         }
 
         if ($this->image) {

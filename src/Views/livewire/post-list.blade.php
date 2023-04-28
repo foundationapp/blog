@@ -4,7 +4,8 @@
 
             @foreach ($posts as $post)
                 <div class="relative overflow-hidden bg-white border border-gray-100 rounded-lg shadow-sm">
-                    <a href="/{{ $post->slug }}" class="block overflow-hidden group">
+                    <a href="/{{ config('blog.route_prefix', 'blog') }}/{{ $post->slug }}"
+                        class="block overflow-hidden group">
                         <img src="{{ asset('storage/' . $post->image) }}"
                             class="object-cover w-full h-56 transition-all duration-300 ease-out sm:h-64 group-hover:scale-110"
                             alt="{{ $post->title }}">
@@ -12,14 +13,16 @@
                     <div class="relative p-7">
                         <p class="uppercase font-semibold text-xs mb-2.5 text-purple-600">
                             {{ $post->created_at->format('F jS, Y') }}</p>
-                        <a href="#" class="block mb-3 hover:underline">
+                        <a href="/{{ config('blog.route_prefix', 'blog') }}/{{ $post->slug }}"
+                            class="block mb-3 hover:underline">
                             <h2 class="text-xl font-bold leading-none text-black transition-colors duration-200">
                                 {{ $post->title }}</h2>
                         </a>
                         @if ($post->excerpt)
                             <p class="mb-4 text-gray-700">{{ $post->excerpt }}</p>
                         @endif
-                        <a href="#_" class="font-medium underline">Read More</a>
+                        <a href="/{{ config('blog.route_prefix', 'blog') }}/{{ $post->slug }}"
+                            class="font-medium underline">Read More</a>
                     </div>
                 </div>
             @endforeach

@@ -39,6 +39,7 @@ class BlogServiceProvider extends ServiceProvider
             // Registering package commands.
             // $this->commands([]);
         }
+        Livewire::component('post', \Foundationapp\Blog\Components\Post::class);
         Livewire::component('post-list', \Foundationapp\Blog\Components\PostList::class);
         Livewire::component('posts-editor', \Foundationapp\Blog\Components\PostsEditor::class);
         Livewire::component('settings', \Foundationapp\Blog\Components\Settings::class);
