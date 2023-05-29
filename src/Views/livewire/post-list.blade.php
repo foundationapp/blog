@@ -6,9 +6,19 @@
                 <div class="relative overflow-hidden bg-white border border-gray-100 rounded-lg shadow-sm">
                     <a href="/{{ config('blog.route_prefix', 'blog') }}/{{ $post->slug }}"
                         class="block overflow-hidden group">
-                        <img src="{{ asset('storage/' . $post->image) }}"
-                            class="object-cover w-full h-56 transition-all duration-300 ease-out sm:h-64 group-hover:scale-110"
-                            alt="{{ $post->title }}">
+                        @if ($post->image)
+                            <img src="{{ asset('storage/' . $post->image) }}"
+                                class="object-cover w-full h-56 transition-all duration-300 ease-out sm:h-64 group-hover:scale-110"
+                                alt="{{ $post->title }}">
+                        @else
+                            <div
+                                class="flex items-center justify-center w-full h-56 transition-all duration-300 ease-out sm:h-64 group-hover:scale-110">
+                                <svg class="w-10 h-10 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 13H5v-2h14v2z">
+                                    </path>
+                                </svg>
+                            </div>
+                        @endif
                     </a>
                     <div class="relative p-7">
                         <p class="uppercase font-semibold text-xs mb-2.5 text-purple-600">
