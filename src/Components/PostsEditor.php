@@ -37,10 +37,10 @@ class PostsEditor extends Component
         'markdown-x:update' => 'updateBody'
     ];
 
-    public function mount(Post $post)
+    public function mount($id = null)
     {
-        if (isset($post)) {
-            $this->post = $post;
+        if (isset($id)) {
+            $this->post = Post::where('id', $id)->where('user_id', auth()->user()->id)->firstOrFail();
         } else {
             $this->post = new Post;
         }
