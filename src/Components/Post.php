@@ -19,8 +19,8 @@ class Post extends Component
         $post = \Foundationapp\Blog\Models\Post::where('slug', $this->post_slug)->firstOrFail();
 
         $view = view('blog::livewire.post', ['post' => $post]);
-
-        $view->extends('layouts.app');
+        
+        $view->extends('layouts.marketing');
 
         return $view;
     }

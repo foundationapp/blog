@@ -128,7 +128,7 @@ class PostsEditor extends Component
     {
         $view = view('blog::livewire.posts-editor');
 
-        $view->extends('layouts.app');
+        $view->layout('layouts.marketing');
 
         return $view;
     }

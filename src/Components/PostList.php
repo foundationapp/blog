@@ -49,7 +49,7 @@ class PostList extends Component
 
         $view = view('blog::livewire.post-list', ['posts' => $posts]);
 
-        $view->extends('layouts.app');
+        $view->layout('layouts.marketing');
 
         return $view;
     }
