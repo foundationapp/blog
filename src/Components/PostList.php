@@ -3,10 +3,13 @@
 namespace Foundationapp\Blog\Components;
 
 use Foundationapp\Blog\Models\Post;
+use Livewire\WithPagination;
 use Livewire\Component;
 
 class PostList extends Component
 {
+    use WithPagination;
+    
     public $numResults = 6;
     public $results;
     public $total;
@@ -48,8 +51,6 @@ class PostList extends Component
             ->paginate($this->numResults);
 
         $view = view('blog::livewire.post-list', ['posts' => $posts]);
-
-        $view->extends('layouts.app');
 
         return $view;
     }
